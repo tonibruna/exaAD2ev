@@ -1,0 +1,7 @@
+Nombre completo (firstName y lastName) de los jugadores en un solo campo e Índice de masa corporal del jugador.
+
+{"nombreCompleto":{"$concat": ["$firstName", " ", "$lastName"]},
+  	"indiceMasa":{"$divide":[{"$toDouble":"$weightKilograms"},
+                  { "$pow": [ {"$toDouble":"$heightMeters"}, 2 ] }]}}
+
+

@@ -11,38 +11,47 @@ import org.neodatis.odb.Objects;
 import org.neodatis.odb.Values;
 import org.neodatis.odb.core.query.IQuery;
 import org.neodatis.odb.core.query.IValuesQuery;
+import org.neodatis.odb.core.query.criteria.And;
 import org.neodatis.odb.core.query.criteria.ICriterion;
 import org.neodatis.odb.core.query.criteria.Where;
 import org.neodatis.odb.impl.core.query.criteria.CriteriaQuery;
 import org.neodatis.odb.impl.core.query.values.GroupByValuesQueryResultAction;
 import org.neodatis.odb.impl.core.query.values.ValuesCriteriaQuery;
 
-import P02_NeoDatis.AD_1_Ventas;
 
-public class Principal_Equipos {
+public class Principal_Champions {
 	static ODB odb;
 	public static void main(String[] args) {
 		
-		odb = ODBFactory.open("C:\\Users\\ifc\\eclipse-workspace\\Examen_2ev_AD\\src\\Ejercicio1\\Data\\ad_1_articulos.dat");
+		odb = ODBFactory.open("C:\\Users\\ifc\\eclipse-workspace\\Examen_2ev_Recup\\src\\Ejercicio1\\Data\\ad_1_articulos.dat");
 		
 		//-----CONSULTAS-------
-		equipoMasAntiguo();
-		//equipoMenosEnPrimera();
+		
+		equipoMasAntiguoGanador();
+		//equipoMenosTempsPrimera();
 		
 		//---------------------
 		odb.close();
 	}
 
-	public static void equipoMasAntiguo() {
+	public static void equipoMasAntiguoGanador() {
 		
-		Objects<Equipo> eq = odb.getObjects(Equipo.class);
+		IQuery query = new CriteriaQuery(Champions.class,Where.gt("ultimoTri", 2001));
+		query.orderByAsc("fundacion");
 		
-		System.out.println("Equipo mas antigüo que ha ganado una liga:");
+		Objects<Champions> objects = odb.getObjects(query);
 		
-		System.out.println();
-		
-		
-
-		System.out.println("\n---------------------------------------------------------------------------------------\n");
+		while(objects.hasNext()){
+			Champions equipo = objects.next();
+		     
+			System.out.println("---------------------------------------------");
+			System.out.println("Equipo mas antiguo que ha ganado alguna champions en SXXI:");
+		    System.out.println("Nombre equipo: "+equipo.getNombre()
+		    	+ " | Año fundado: " + equipo.getFundacion() + " | Numero Champions: " + equipo.getCampeonatos()
+		    	+ " | Subcampeonatos: " + equipo.getSubcampeonatos());
+		    System.out.println("---------------------------------------------");
+		   break;
+		}
 	}
+	
 }

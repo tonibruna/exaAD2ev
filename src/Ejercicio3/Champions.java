@@ -1,4 +1,4 @@
-package Ejercicio1;
+package Ejercicio3;
 
 public class Champions {
 	
@@ -17,6 +17,9 @@ public class Champions {
 		this.campeonatos = campeonatos;
 		this.subcampeonatos = subcampeonatos;
 		this.ultimoTri = ultimoTri;
+	}
+	public Champions() {
+		super();
 	}
 	
 	public String getNombre() {
@@ -55,7 +58,9 @@ public class Champions {
 	public void setUltimoSub(int ultimoSub) {
 		this.ultimoSub = ultimoSub;
 	}
-
-}	
-
-
+	@Override
+	public String toString() {
+		return nombre + " - " + campeonatos + " - " + subcampeonatos + " - "
+				+fundacion + " - " + ultimoTri + " - " + ultimoSub;
+	}
+}

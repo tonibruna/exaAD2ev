@@ -1,4 +1,4 @@
-package driverMySql;
+package Ejercicio3;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -21,11 +21,11 @@ public class MySQLConnection {
 			datos.put("user", user);
 			datos.put("password", pass);
 			
-			String url = "jdbc:mysql://localhost:3306/nba?serverTimezone=UTC";
+			String url = "jdbc:mysql://localhost:3306/champions?serverTimezone=UTC";
 			
 			con = DriverManager.getConnection(url, datos);
 			if (con != null) {
-				System.out.println("Conexión a nba satisfactoria");
+				System.out.println("Conexión a champions satisfactoria");
 			}
 						
 		} catch (SQLException e) {
